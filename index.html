@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eyewitness Memory Study</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="eyebrow">PSYCHOLOGY RESEARCH STUDY</div>
+      <h1>Eyewitness Memory & Social Media</h1>
+      <p class="subtitle">A study of event memory, post-event information, and confidence</p>
+    </header>
+
+    <section id="consentScreen" class="panel">
+      <div class="progress-label">CONSENT TO PARTICIPATE</div>
+      <h2>Consent to Participate: Memory &amp; Eyewitness Identification</h2>
+      <p>You are invited to participate in an online class research project examining memory and eyewitness identification.</p>
+
+      <h3>What will I do?</h3>
+      <p>The study includes 3 short activities, in which you will be asked to 1) view a car accident and answer questions about it; 2) view a theft and answer questions about it; and 3) learn how various cues help or hinder memory. It takes no more than 30 minutes and can be completed online at any time through midnight on December 1, 2026.</p>
+
+      <h3>Who may participate?</h3>
+      <p>You must be 18 years of age or older to participate.</p>
+
+      <h3>Are there risks?</h3>
+      <p>The activities involve fictitious incident/crime as well as ordinary judgments and questions similar to those used in psychology demonstrations and research. No more than minimal risk is anticipated.</p>
+
+      <h3>Is participation voluntary?</h3>
+      <p>Yes. Participation is voluntary. You may stop participating at any time by closing the browser.</p>
+
+      <h3>How will my information be handled?</h3>
+      <p>Your experimental responses will not include your name or identifying information. If you are completing these tasks for PSYC 101 research credit, after you complete all three activities, you will be directed to a separate form asking for the information needed to issue such credit.</p>
+      <p>The research-credit form will not be linked to your experimental responses. Data records will be anonymized before analysis. The results of this class project will not be presented publicly.</p>
+
+      <h3>Research credit</h3>
+      <p>Completing the study and the separate research-credit form is worth 0.5 hours of PSYC 101 research credit.</p>
+
+      <h3>Consent</h3>
+      <p>By clicking “Proceed” below, you confirm that:</p>
+      <ul>
+        <li>you are at least 18 years old;</li>
+        <li>you have read the information above;</li>
+        <li>you understand that participation is voluntary; and</li>
+        <li>you agree to participate in this study.</li>
+      </ul>
+      <button id="consentProceed" class="primary" type="button">Proceed</button>
+    </section>
+
+    <section id="welcome" class="panel hidden">
+      <div class="progress-label">WELCOME</div>
+      <h2>Thank you for participating</h2>
+      <p>You will watch a short traffic-incident video, read a social media-style update, answer four questions about the video, and rate your confidence in your answers.</p>
+      <div class="notice">
+        <strong>Before you begin</strong>
+        <ul>
+          <li>Please complete the study individually and do not replay or discuss the video.</li>
+          <li>Pay close attention to the details in the video. You will not be able to return to it.</li>
+          <li>This study includes fictional post-event information that may be inaccurate. The purpose will be explained at the end.</li>
+          <li>You may stop participating at any time.</li>
+        </ul>
+      </div>
+      <p class="small">This demonstration is designed for a class research project. Obtain instructor approval and appropriate consent before collecting research data.</p>
+      <button id="beginBtn" class="primary">Begin study</button>
+    </section>
+
+    <section id="videoScreen" class="panel hidden">
+      <div class="progress-label">STEP 1 OF 5 · WATCH THE EVENT</div>
+      <h2>Please watch the video carefully</h2>
+      <p>Watch the entire clip once. Try to remember the details of the traffic incident.</p>
+      <div class="video-wrap">
+        <video id="eventVideo" playsinline preload="auto" controlslist="nodownload noplaybackrate" disablepictureinpicture>
+          <source id="videoSource" src="" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+      </div>
+      <p id="videoStatus" class="small">The video will play once. Please watch until it finishes.</p>
+      <button id="videoContinue" class="primary" disabled>Continue</button>
+    </section>
+
+    <section id="postScreen" class="panel hidden">
+      <div class="progress-label">STEP 2 OF 5 · SOCIAL MEDIA UPDATE</div>
+      <h2>Read this post about the incident</h2>
+      <p class="small">Imagine this update appeared on a local community social media page shortly after the incident.</p>
+      <article class="social-post">
+        <div class="post-head">
+          <div class="avatar">N</div>
+          <div><strong>Neighborhood Watch</strong><div class="muted">Community update · Just now</div></div>
+          <span class="verified">LOCAL</span>
+        </div>
+        <p id="socialText" class="post-copy"></p>
+        <div class="post-footer">♡ Like　　↗ Share　　Comment</div>
+      </article>
+      <p class="small">Please read the update carefully. You will not be able to return to the video.</p>
+      <button id="postContinue" class="primary">Continue to questions</button>
+    </section>
+
+    <section id="questionScreen" class="panel hidden">
+      <div class="progress-label">STEP 3 OF 5 · MEMORY QUESTIONS</div>
+      <div class="question-head"><h2>What do you remember?</h2><span id="questionCount" class="counter">Question 1 of 4</span></div>
+      <div class="progress-track"><div id="questionProgress" class="progress-fill"></div></div>
+      <form id="questionForm">
+        <fieldset>
+          <legend id="questionText"></legend>
+          <div id="answerOptions" class="options"></div>
+        </fieldset>
+        <button id="nextQuestion" class="primary" type="submit" disabled>Next question</button>
+      </form>
+    </section>
+
+    <section id="feedbackScreen" class="panel hidden">
+      <div class="progress-label">STEP 5 OF 5 · FEEDBACK</div>
+      <h2>Feedback on your responses</h2>
+      <div id="feedbackMessage" class="feedback-card"></div>
+      <p>After reading this feedback, how confident are you that your answers accurately reflect what happened in the video?</p>
+      <div class="range-labels"><span>0 · Not at all confident</span><span>100 · Completely confident</span></div>
+      <input id="postConfidence" type="range" min="0" max="100" value="50">
+      <div class="range-value"><span id="postConfidenceValue">50</span><span>/ 100</span></div>
+      <button id="finishBtn" class="primary">Submit responses</button>
+    </section>
+
+    <section id="resultsScreen" class="panel hidden">
+      <div class="progress-label">COMPLETED</div>
+      <h2>Thank you for taking part</h2>
+      <p>Your responses have been recorded in this browser session.</p>
+      <div id="resultSummary" class="results-box"></div>
+      <section class="notice learning-section" aria-labelledby="what-results-mean">
+        <h3 id="what-results-mean">What your results mean</h3>
+        <div id="individualInterpretation"></div>
+      </section>
+      <section class="notice learning-section" aria-labelledby="expected-pattern">
+        <h3 id="expected-pattern">What researchers would expect to find</h3>
+        <p><strong>Misinformation effect:</strong> Across a group, participants who read misleading post-event information are expected, on average, to make more errors consistent with that misinformation than participants who read accurate information. This reflects the reconstructive nature of memory: remembering is not a perfect replay, and later information can become blended with the original event.</p>
+        <p><strong>Source-monitoring errors:</strong> A participant may remember a detail but confuse where it came from— the video or the later social media post. This can make a suggested detail feel like something they actually witnessed.</p>
+        <p><strong>Feedback and confidence:</strong> Strongly confirming feedback may increase confidence even when an answer is incorrect, because confidence is influenced by later social feedback as well as by the quality of the original memory. Confidence and accuracy therefore do not always move together.</p>
+        <p class="small">These are predicted group-level patterns, not a diagnosis or a pass/fail standard for an individual participant.</p>
+      </section>
+      <section class="notice learning-section" aria-labelledby="why-different">
+        <h3 id="why-different">Why your results might differ from the expected pattern</h3>
+        <div id="deviationExplanation"></div>
+        <p>Individual results can vary because of attention while watching the video, how clearly a detail was encoded, prior expectations, the similarity of the vehicles, the delay between viewing and recall, and whether the participant correctly remembers the source of a detail. Random assignment also means one person's result may not show the average effect. A single participant's score cannot establish whether an experimental condition caused an effect.</p>
+      </section>
+      <div class="notice debrief">
+        <h3>Full debriefing</h3>
+        <p>This study examines how inaccurate post-event information can influence eyewitness reports (the <strong>misinformation effect</strong>) and how affirming feedback can influence confidence. The experiment randomly assigned participants to read either an accurate or misleading social media-style post and to receive either strongly confirming or neutral feedback. Feedback was assigned independently of answer accuracy and was not an evaluation of your actual performance.</p>
+        <p>The post may have included an incorrect detail about the road sign and/or which vehicle approached from each side. The two traffic clips show the same staged collision scenario with different road signs (STOP or YIELD). No identifying information is requested by this page.</p>
+        <p>If you have questions about the class project, please contact your instructor or the student researcher.</p>
+      </div>
+      <div id="saveStatus" class="save-status" role="status" aria-live="polite">Preparing your responses for automatic saving…</div>
+      <div id="downloadActions" class="download-row hidden">
+        <button id="downloadSummary" class="primary">Download summary CSV</button>
+        <button id="downloadTrials" class="secondary">Download trial-level CSV</button>
+      </div>
+      <button id="retryUploads" class="primary hidden">Retry saving responses</button>
+      <p id="continueHelp" class="small">Your responses are uploading automatically. Please read the explanation above; you can take a break before continuing.</p>
+      <button id="continueBtn" class="primary" disabled>Continue to next activity</button>
+    </section>
+
+    <footer>Participation is voluntary · Anonymous study responses are sent to the project DataPipe</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
